@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Valentine's Bé Yêu</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffe6e6;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;       /* ← thay đổi để nội dung bắt đầu từ trên */
+            min-height: 100vh;             /* ← cho phép cuộn khi nội dung dài */
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+            color: #d90429;
+            -webkit-font-smoothing: antialiased;
+            -webkit-overflow-scrolling: touch;
+        }
+        .container {
+            text-align: center;
+            z-index: 10;
+            max-width: 95%;
+            padding: 20px 15px 60px;       /* ← padding trên + dưới lớn hơn để thoải mái cuộn */
+            box-sizing: border-box;
+        }
+        h1 {
+            font-size: clamp(2.2rem, 9vw, 4rem);
+            margin: 0.6em 0 1em;
+            animation: fadeIn 2.2s ease-out;
+        }
+        .message {
+            font-size: 15px;               /* hơi to hơn tí cho dễ đọc khi cuộn */
+            line-height: 1.8;
+            margin: 1.5em auto;
+            max-width: 1000px;
+            padding: 0 12px;
+            text-align: left;              /* ← chữ dàn trái đẹp hơn khi dài */
+        }
+        .typewriter {
+            display: inline-block;
+            overflow: hidden;
+            border-right: 0.18em solid #d90429;
+            white-space: pre-line;
+            word-wrap: break-word;
+            animation: blink-caret 0.8s step-end infinite;
+            max-width: 100%;
+            will-change: contents;
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #d90429; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .heart {
+            position: fixed;               /* ← dùng fixed để tim bay độc lập với scroll */
+            background-color: #d90429;
+            height: 18px;
+            width: 18px;
+            transform: rotate(-45deg);
+            bottom: -30px;
+            animation: heartMove 6s linear infinite;
+            will-change: transform, opacity;
+            pointer-events: none;          /* không cản trở chạm/cuộn */
+        }
+        .heart:after,
+        .heart:before {
+            content: '';
+            position: absolute;
+            background-color: #d90429;
+            border-radius: 50%;
+            height: 18px;
+            width: 18px;
+        }
+        .heart:before { top: -9px; left: 0; }
+        .heart:after { left: 9px; top: 0; }
+        @keyframes heartMove {
+            0%   { transform: translateY(0) rotate(-45deg); opacity: 0; }
+            10%  { opacity: 1; }
+            100% { transform: translateY(-120vh) rotate(-45deg); opacity: 0; }
+        }
+        p {
+            font-size: 12px;
+            margin-top: 3em;
+            opacity: 0.9;
+        }
+        @media (max-width: 480px) {
+            .container { padding: 30px 10px 100px; }
+            .message { font-size: 14px; line-height: 1.75; }
+        }
+        @media (min-width: 768px) and (max-width: 1024px) {
+            h1 { font-size: clamp(3rem, 7vw, 5rem); }
+            .message { font-size: clamp(1.4rem, 3.5vw, 2.2rem); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chúc mừng Valentine's Bé yêu ❤️</h1>
+      
+        <div class="message">
+            <span class="typewriter" id="typed-text"></span>
+        </div>
+      
+        <p>Lê Thị Tuyết Mai</p>
+    </div>
+
+    <script>
+        // Tạo tim bay
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 8000);
+        }
+        setInterval(createHeart, 320);
+
+        // Typewriter
+        const textElement = document.getElementById('typed-text');
+        const fullText = "Em yêu dấu của anh!\nCảm ơn em vì đã chọn anh – một chàng trai đôi khi vụng về hay vô tâm và không phải lúc nào cũng biết cách thể hiện tình cảm sao cho hoàn hảo. Em đã kiên nhẫn lúc anh vô tâm và đã ở bên anh qua những ngày bình thường nhất, cũng như những khoảnh khắc anh cần em nhất. Chính sự dịu dàng ấy, sự bao dung ấy đã làm trái tim anh rung động mỗi ngày, khiến anh nhận ra rằng tình yêu thực sự không phải là những điều lớn lao, mà là cách hai ta chọn ở bên nhau dù cuộc sống có thế nào.\nValentine 2026 này, anh không mong gì hơn ngoài việc chúng ta tiếp tục nắm chặt tay nhau, cùng bước qua mọi điều phía trước – dù là niềm vui rực rỡ hay những thử thách bất ngờ. Anh hứa sẽ cố gắng hơn mỗi ngày: học cách lắng nghe em nhiều hơn, ôm em chặt hơn khi em mệt mỏi, và yêu thương em bằng tất cả những gì anh có, không chỉ hôm nay mà mãi mãi về sau.\nEm là ánh sáng, là lý do, là nhà của anh. Anh yêu em rất rất nhiều, yêu em bằng cả trái tim chân thành nhất và anh biết ơn vì có em trong cuộc đời này. Chúc em một ngày Valentine thật ấm áp, tràn đầy hạnh phúc và biết rằng anh luôn ở đây, mãi mãi là của em.\nYêu em nhiều lắm🌹❤️😘🍫";
+        let i = 0;
+        const speed = 65;
+        function typeWriter() {
+            if (i < fullText.length) {
+                textElement.innerHTML += fullText.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            } else {
+                textElement.style.borderRight = 'none';
+            }
+        }
+        setTimeout(typeWriter, 1200);
+    </script>
+</body>
+</html>
